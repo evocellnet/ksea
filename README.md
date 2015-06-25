@@ -2,7 +2,7 @@
 
 This package contains an implementation of the Kinase Set Enrichment Analysis (KSEA) used to predict kinase activities based on quantitative phosphoproteomic studies. Using a quantitative phosphoproteomic profile and a list of known targets, the algorithms predicts the activity of the based on the enrichment on top regulated sites within the known targets of the kinase.
 
-![kinase](./kinase_GSEA.svg)
+![kinase](./kinase_GSEA.png)
 
 ###Installation
 
@@ -50,7 +50,7 @@ regulons
 
 ```
 ## $kinaseA
-## [1] "T" "Q" "J" "C" "B"
+## [1] "W" "M" "K" "P" "Y"
 ```
 
 ```r
@@ -60,16 +60,18 @@ sites
 ```
 
 ```
-##           A           B           C           D           E           F 
-## -0.39589312 -1.01313509  1.59145962 -1.75326336 -0.23962032 -0.00219886 
-##           G           H           I           J           K           L 
-##  0.88437513  0.48515989  2.22793272 -0.62156450  0.59940577 -0.10587234 
-##           M           N           O           P           Q           R 
-##  1.02308730  0.71575798  1.23355793  0.60003866  1.10594946 -0.60484523 
-##           S           T           U           V           W           X 
-##  0.92983314 -0.46855419  1.26945365  0.27012527 -1.71571818 -1.02864832 
-##           Y           Z 
-##  0.17317110 -1.73942208
+##            A            B            C            D            E 
+##  0.625324365 -0.577288591  0.008483193  0.009401793  0.184715982 
+##            F            G            H            I            J 
+##  0.904663114  0.339512278  1.460114804 -0.193408012 -0.044867689 
+##            K            L            M            N            O 
+##  0.756278462  1.551934349  0.798047060 -0.944701346 -0.150922121 
+##            P            Q            R            S            T 
+##  0.446089149 -0.189256209 -0.492199379  0.096011965 -1.154183518 
+##            U            V            W            X            Y 
+## -2.163000945 -0.332748398  0.168692442 -0.049034005  1.175449545 
+##            Z 
+##  0.240151411
 ```
 
 The function `ksea` will run the enrichment analysis for the provided quantifications and known kinase targets.
@@ -87,12 +89,12 @@ ksea_result
 
 ```
 ## $ES
-##         C 
-## 0.4949299 
+##          J 
+## -0.4761905 
 ## 
 ## $p.value
-##     C 
-## 0.146
+##     J 
+## 0.241
 ```
 
 The function `ksea_batchKinases` calculates the KSEA p-value for a list of kinases. To improve the performance of the function, it uses as many cores as possible using the `parallell` package.
@@ -106,13 +108,13 @@ regulons
 
 ```
 ## $kinaseA
-## [1] "T" "Q" "J" "C" "B"
+## [1] "W" "M" "K" "P" "Y"
 ## 
 ## $kinaseB
-## [1] "K" "N" "G"
+## [1] "S" "X" "T"
 ## 
 ## $kinaseC
-## [1] "I" "V" "K" "U" "N" "L" "J"
+## [1] "E" "R" "U" "A" "O" "X" "H"
 ```
 
 ```r
@@ -128,8 +130,8 @@ kinases_ksea
 ```
 
 ```
-## kinaseA.C kinaseB.N kinaseC.H 
-##     0.149     0.215     0.190
+## kinaseA.J kinaseB.R kinaseC.T 
+##     0.261     0.049     0.561
 ```
 
 
