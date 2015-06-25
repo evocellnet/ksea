@@ -78,7 +78,7 @@ ksea <- function(ranking, norm_express, signature, p=1, display=TRUE,
          xaxs="i",
          bty="l",
          axes=FALSE,
-         xlab="Gene Rank Position",
+         xlab="Site Rank Position",
          ylab="Running Sum")
 
     par(new=TRUE)
