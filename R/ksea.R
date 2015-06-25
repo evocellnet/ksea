@@ -1,10 +1,10 @@
-##' Weighted Gene Set Enrichment Analysis
+##' Enrichment of differentially regulated sites in a signature of kinase known targets
 ##'
-##' The Gene Set Enrichment Analysis is a established analysis statistical method to look
+##' The Kinase Set Enrichment Analysis is a established analysis statistical method to look
 ##' for an enrichment on differentially regulated genes/proteins belonging to a given category
 ##' in a ranked list usually based on gene expression.
 ##' 
-##' @title wGSEA
+##' @title Kinase Set Enrichment Analysis
 ##' @param ranking Vector of strings containing the ranking of all ids ordered based on
 ##' their quantifications.
 ##' @param norm_express Numeric vector with quantifications.
@@ -21,10 +21,17 @@
 ##' and \code{significance}. 
 ##' @author David Ochoa (code adapted from Francesco Ioirio's version of the same function).
 ##' 
-wGSEA <- function(ranking, norm_express, signature, p=1, display=TRUE,
+ksea <- function(ranking, norm_express, signature, p=1, display=TRUE,
                   returnRS=FALSE, significance=FALSE, trial=1000){
+
+ 
   #intersection between signature and ranked list
   signature <- unique(intersect(signature,ranking))
+  ## Checks if there's some overlap between the ranking and the signature
+  if(length(signature) == 0){
+    return(NA)
+  }
+
   #Numeric 1/0 of the hits on the ranked list
   HITS <- as.numeric(is.element(ranking,signature))
   #Multiplication of hits and norm_express
@@ -47,9 +54,9 @@ wGSEA <- function(ranking, norm_express, signature, p=1, display=TRUE,
   Pmiss <- missCases / N_Nh
 
   #Maximum difference between hit and miss
-  m <- max(abs(Phit-Pmiss))
+  m <- max(abs(Phit - Pmiss))
   #index where the maximum is produced
-  t <- which(abs(Phit-Pmiss) == m)
+  t <- which(abs(Phit - Pmiss) == m)
   #In case there is more than one position with maximum values it takes the first one
   if (length(t) > 1){
     t <- t[1]
@@ -119,28 +126,8 @@ computeSimpleEMPES <- function(ranking,exp_value_profile,signature,trials){
   ES <- rep(NA,trials)
   for (i in 1:trials){
     shuffled_signature <- ranking[sample(1:ngenes,siglen)]
-    tmp <- wGSEA(ranking,exp_value_profile,shuffled_signature,display=FALSE,significance=FALSE)
+    tmp <- ksea(ranking,exp_value_profile,shuffled_signature,display=FALSE,significance=FALSE)
     ES[i] <- tmp
   }
   return(ES)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
