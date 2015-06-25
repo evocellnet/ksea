@@ -8,13 +8,13 @@ This package contains an implementation of the Kinase Set Enrichment Analysis (K
 
 The `ksea` package can be installed directly from github (if public) or locally using the devtools package.
 
-```{r install_devtools, warning=FALSE}
+```{r install_devtools, eval=FALSE}
 install.packages('devtools')
 ```
 
 #####Github installation
 
-```{r install_ksea_github, warning=FALSE}
+```{r install_ksea_github, eval=FALSE}
 require(devtools)
 install_github("dogcaesar/ksea")
 
@@ -24,7 +24,7 @@ install_github("dogcaesar/ksea")
 
 You can clone this project and install it locally in your computer.
 
-```{r install_ksea_locally, warning=FALSE}
+```{r install_ksea_locally, eval=FALSE}
 require(devtools)
 install("./ksea")
 
@@ -34,11 +34,11 @@ install("./ksea")
 
 First load the `ksea` package.
 
-```{r load_ksea, warning=FALSE}
+```{r load_ksea}
 library("ksea")
 ```
 
-Next create some fake data. `regulons` contains the kinase targets
+Next create some fake data. In one hand, we create a list named `regulons` containing a vector per kinase with the names of the known substrates. Secondly, we create a vector sites with quantifications for the sites going from A to Z.
 
 ```{r data}
 regulons <- list(kinaseA=sample(LETTERS, 5))
@@ -60,7 +60,7 @@ ksea_result
 
 The function `ksea_batchKinases` calculates the KSEA p-value for a list of kinases. To improve the performance of the function, it uses as many cores as possible using the `parallell` package.
 
-```{r ksea_batchKinases, dpi=100}
+```{r ksea_batchKinases}
 
 regulons[["kinaseB"]] <- sample(LETTERS, 3)
 regulons[["kinaseC"]] <- sample(LETTERS, 7)
@@ -76,9 +76,4 @@ kinases_ksea
 
 The package is documented using [roxygen2](http://cran.r-project.org/web/packages/roxygen2/index.html). After changing the code located in the `R/` folder remember to run 'make' on the main directory to create the documentation following the roxygen2 rules.
 
-To work on the code you will need the `devtools` package installed.
-
-``r``
-install.packages("devtools")  
-``
-
+To work on the code you will need the `devtools` package installed (read above to installation guide).

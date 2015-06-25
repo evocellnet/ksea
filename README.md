@@ -13,36 +13,12 @@ The `ksea` package can be installed directly from github (if public) or locally 
 install.packages('devtools')
 ```
 
-```
-## Installing package into '/nfs/gns/homes/ochoa/R/x86_64-unknown-linux-gnu-library/3.1'
-## (as 'lib' is unspecified)
-```
-
-```
-## Error in contrib.url(repos, type): trying to use CRAN without setting a mirror
-```
-
 #####Github installation
 
 
 ```r
 require(devtools)
-```
-
-```
-## Loading required package: devtools
-```
-
-```r
 install_github("dogcaesar/ksea")
-```
-
-```
-## Downloading github repo dogcaesar/ksea@master
-```
-
-```
-## Error in download(dest, src, auth): client error: (404) Not Found
 ```
 
 #####Local installation
@@ -55,10 +31,6 @@ require(devtools)
 install("./ksea")
 ```
 
-```
-## Error: Can't find directory ./ksea
-```
-
 ###Usage
 
 First load the `ksea` package.
@@ -68,11 +40,7 @@ First load the `ksea` package.
 library("ksea")
 ```
 
-```
-## Error in library("ksea"): there is no package called 'ksea'
-```
-
-Next create some fake data. `regulons` contains the kinase targets
+Next create some fake data. In one hand, we create a list named `regulons` containing a vector per kinase with the names of the known substrates. Secondly, we create a vector sites with quantifications for the sites going from A to Z.
 
 
 ```r
@@ -82,7 +50,7 @@ regulons
 
 ```
 ## $kinaseA
-## [1] "E" "T" "H" "V" "K"
+## [1] "T" "Q" "J" "C" "B"
 ```
 
 ```r
@@ -93,15 +61,15 @@ sites
 
 ```
 ##           A           B           C           D           E           F 
-## -1.42560641 -2.01013653  0.56781578  0.68705298 -0.34661453  0.53071303 
+## -0.39589312 -1.01313509  1.59145962 -1.75326336 -0.23962032 -0.00219886 
 ##           G           H           I           J           K           L 
-## -0.47827975  0.49009354 -0.76700075  1.23255658  1.23687349 -1.24953576 
+##  0.88437513  0.48515989  2.22793272 -0.62156450  0.59940577 -0.10587234 
 ##           M           N           O           P           Q           R 
-##  0.16324517  0.22818519 -1.34276572  0.48517930  0.51982041 -0.91399740 
+##  1.02308730  0.71575798  1.23355793  0.60003866  1.10594946 -0.60484523 
 ##           S           T           U           V           W           X 
-##  0.01868971  0.67101621 -1.42381255  1.17525942 -0.38386569  1.47247947 
+##  0.92983314 -0.46855419  1.26945365  0.27012527 -1.71571818 -1.02864832 
 ##           Y           Z 
-## -0.26701826 -0.41339252
+##  0.17317110 -1.73942208
 ```
 
 The function `ksea` will run the enrichment analysis for the provided quantifications and known kinase targets.
@@ -111,16 +79,20 @@ The function `ksea` will run the enrichment analysis for the provided quantifica
 ksea_result <- ksea(names(sites), sites, regulons[["kinaseA"]], trial=1000, significance = TRUE)
 ```
 
-```
-## Error in eval(expr, envir, enclos): could not find function "ksea"
-```
+![plot of chunk ksea](figure/ksea-1.png) 
 
 ```r
 ksea_result
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'ksea_result' not found
+## $ES
+##         C 
+## 0.4949299 
+## 
+## $p.value
+##     C 
+## 0.146
 ```
 
 The function `ksea_batchKinases` calculates the KSEA p-value for a list of kinases. To improve the performance of the function, it uses as many cores as possible using the `parallell` package.
@@ -134,13 +106,13 @@ regulons
 
 ```
 ## $kinaseA
-## [1] "E" "T" "H" "V" "K"
+## [1] "T" "Q" "J" "C" "B"
 ## 
 ## $kinaseB
-## [1] "L" "E" "Q"
+## [1] "K" "N" "G"
 ## 
 ## $kinaseC
-## [1] "L" "F" "V" "Z" "C" "D" "P"
+## [1] "I" "V" "K" "U" "N" "L" "J"
 ```
 
 ```r
@@ -148,7 +120,7 @@ kinases_ksea <- ksea_batchKinases(names(sites), sites, regulons, trial=1000)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): could not find function "ksea_batchKinases"
+## Loading required package: parallel
 ```
 
 ```r
@@ -156,7 +128,8 @@ kinases_ksea
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'kinases_ksea' not found
+## kinaseA.C kinaseB.N kinaseC.H 
+##     0.149     0.215     0.190
 ```
 
 
@@ -164,9 +137,4 @@ kinases_ksea
 
 The package is documented using [roxygen2](http://cran.r-project.org/web/packages/roxygen2/index.html). After changing the code located in the `R/` folder remember to run 'make' on the main directory to create the documentation following the roxygen2 rules.
 
-To work on the code you will need the `devtools` package installed.
-
-``r``
-install.packages("devtools")  
-``
-
+To work on the code you will need the `devtools` package installed (read above to installation guide).
