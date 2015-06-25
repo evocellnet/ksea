@@ -1,8 +1,10 @@
 Package: kinaseactR
-Title: What the Package Does (one line, title case)
+Title: Kinase Activity Prediction based in Quantitative Phosphoproteomic Data
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph)
-Depends: R (>= 3.1.2)
-License: What license is it under?
+Authors@R: person("David", "Ochoa", email = "ochoa@ebi.ac.uk", role = c("aut", "cre"))
+Description: An implementation of the Kinase Set Enrichment Analysis (KSEA) used to predict kinase activities in quantitative phosphoproteomic studies. By providing a list of known targets for a set of kinases and a quantitative phosphoproteomic profile, the algorithm is able to predict the kinase activities by looking at sets of substrates differentially regulated in the given condition.  
+Depends: R (>= 3.1.0)
+License: GNU v3
 LazyData: true
+Imports:
+    parallel
