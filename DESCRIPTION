@@ -1,4 +1,4 @@
-Package: kinaseactR
+Package: ksea
 Title: Kinase Activity Prediction based in Quantitative Phosphoproteomic Data
 Version: 0.0.0.9000
 Authors@R: person("David", "Ochoa", email = "ochoa@ebi.ac.uk", role = c("aut", "cre"))
