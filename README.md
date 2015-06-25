@@ -40,7 +40,7 @@ First load the `ksea` package.
 library("ksea")
 ```
 
-Next create some fake data. In one hand, we create a list named `regulons` containing a vector per kinase with the names of the known substrates. Secondly, we create a vector sites with quantifications for the sites going from A to Z.
+Next create some fake data. In one hand, we create a list named `regulons` containing a vector per kinase with the names of the known substrates. Secondly, we create a vector sites with quantifications for the sites going from A to Z. Finally, we sort the quantifications.
 
 
 ```r
@@ -50,28 +50,27 @@ regulons
 
 ```
 ## $kinaseA
-## [1] "W" "M" "K" "P" "Y"
+## [1] "A" "D" "B" "V" "S"
 ```
 
 ```r
 sites <- rnorm(length(LETTERS))
 names(sites) <- LETTERS
+sites <- sites[order(sites, decreasing=TRUE)]
 sites
 ```
 
 ```
-##            A            B            C            D            E 
-##  0.625324365 -0.577288591  0.008483193  0.009401793  0.184715982 
-##            F            G            H            I            J 
-##  0.904663114  0.339512278  1.460114804 -0.193408012 -0.044867689 
-##            K            L            M            N            O 
-##  0.756278462  1.551934349  0.798047060 -0.944701346 -0.150922121 
-##            P            Q            R            S            T 
-##  0.446089149 -0.189256209 -0.492199379  0.096011965 -1.154183518 
-##            U            V            W            X            Y 
-## -2.163000945 -0.332748398  0.168692442 -0.049034005  1.175449545 
-##            Z 
-##  0.240151411
+##           Y           X           F           R           Q           V 
+##  1.55411311  1.26512010  0.99839814  0.67378413  0.60563440  0.60414623 
+##           Z           S           U           C           I           N 
+##  0.15636554  0.04641178 -0.04892578 -0.13266507 -0.13956017 -0.15427663 
+##           H           A           G           O           W           B 
+## -0.18234163 -0.18861177 -0.35305334 -0.54023780 -0.58719937 -0.69101295 
+##           T           L           M           E           J           K 
+## -0.81566846 -0.93211576 -1.10098003 -1.14605933 -1.18557350 -1.47770101 
+##           P           D 
+## -1.71075316 -1.87901257
 ```
 
 The function `ksea` will run the enrichment analysis for the provided quantifications and known kinase targets.
@@ -89,12 +88,12 @@ ksea_result
 
 ```
 ## $ES
-##          J 
-## -0.4761905 
+##          P 
+## -0.5511601 
 ## 
 ## $p.value
-##     J 
-## 0.241
+##     P 
+## 0.277
 ```
 
 The function `ksea_batchKinases` calculates the KSEA p-value for a list of kinases. To improve the performance of the function, it uses as many cores as possible using the `parallell` package.
@@ -108,13 +107,13 @@ regulons
 
 ```
 ## $kinaseA
-## [1] "W" "M" "K" "P" "Y"
+## [1] "A" "D" "B" "V" "S"
 ## 
 ## $kinaseB
-## [1] "S" "X" "T"
+## [1] "R" "L" "Q"
 ## 
 ## $kinaseC
-## [1] "E" "R" "U" "A" "O" "X" "H"
+## [1] "P" "A" "Z" "G" "Q" "C" "W"
 ```
 
 ```r
@@ -130,8 +129,8 @@ kinases_ksea
 ```
 
 ```
-## kinaseA.J kinaseB.R kinaseC.T 
-##     0.261     0.049     0.561
+## kinaseA.P kinaseB.Q kinaseC.K 
+##     0.301     0.291     0.459
 ```
 
 

@@ -38,7 +38,7 @@ First load the `ksea` package.
 library("ksea")
 ```
 
-Next create some fake data. In one hand, we create a list named `regulons` containing a vector per kinase with the names of the known substrates. Secondly, we create a vector sites with quantifications for the sites going from A to Z.
+Next create some fake data. In one hand, we create a list named `regulons` containing a vector per kinase with the names of the known substrates. Secondly, we create a vector sites with quantifications for the sites going from A to Z. Finally, we sort the quantifications.
 
 ```{r data}
 regulons <- list(kinaseA=sample(LETTERS, 5))
@@ -46,6 +46,7 @@ regulons
 
 sites <- rnorm(length(LETTERS))
 names(sites) <- LETTERS
+sites <- sites[order(sites, decreasing=TRUE)]
 sites
 
 ```
