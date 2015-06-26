@@ -19,7 +19,7 @@ ksea_batchKinases <- function(ranking, logvalues, regulons, trial=1000){
           display=FALSE,
           returnRS=FALSE,
           significance=TRUE,
-          trial=trial))
+          trial=trial), mc.preschedule = FALSE)
   if(is.matrix(tests)){
     pvals <-  unlist(tests["p.value", ])
   }else{

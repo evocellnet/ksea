@@ -50,7 +50,7 @@ regulons
 
 ```
 ## $kinaseA
-## [1] "H" "Z" "X" "Q" "J"
+## [1] "M" "V" "U" "X" "S"
 ```
 
 ```r
@@ -61,16 +61,16 @@ sites
 ```
 
 ```
-##           U           J           B           D           M           K 
-##  1.28203017  1.18290895  1.00870386  0.98361550  0.70789790  0.66667179 
-##           C           Y           L           H           S           O 
-##  0.49480823  0.28026819  0.11902448  0.04488696  0.03669630 -0.05799009 
-##           G           Q           T           I           F           R 
-## -0.16370132 -0.16386796 -0.32232170 -0.34002203 -0.48457569 -0.49747583 
-##           Z           V           X           N           E           A 
-## -0.67767522 -0.92382567 -1.04033437 -1.09656516 -1.19541815 -1.79541209 
-##           P           W 
-## -2.49714732 -2.58409146
+##           X           Z           A           V           O           H 
+##  1.65893111  0.95009321  0.78208600  0.77177370  0.72384673  0.61570291 
+##           D           M           Y           J           F           R 
+##  0.43395361  0.39844077  0.37872158  0.17841874  0.15080595  0.07230215 
+##           U           E           W           L           Q           C 
+## -0.03903746 -0.04094557 -0.05629761 -0.08365891 -0.15640349 -0.22658056 
+##           T           G           I           S           P           N 
+## -0.24810027 -0.29495063 -0.38296909 -0.41612990 -0.43166183 -0.49439111 
+##           B           K 
+## -1.16878279 -1.90545807
 ```
 
 The function `ksea` will run the enrichment analysis for the provided quantifications and known kinase targets.
@@ -88,12 +88,12 @@ ksea_result
 
 ```
 ## $ES
-##         J 
-## 0.3327775 
+##         V 
+## 0.6448573 
 ## 
 ## $p.value
-##     J 
-## 0.275
+##     V 
+## 0.154
 ```
 
 The function `ksea_batchKinases` calculates the KSEA p-value for a list of kinases. To improve the performance of the function, it uses as many cores as possible using the `parallell` package.
@@ -107,13 +107,13 @@ regulons
 
 ```
 ## $kinaseA
-## [1] "H" "Z" "X" "Q" "J"
+## [1] "M" "V" "U" "X" "S"
 ## 
 ## $kinaseB
-## [1] "C" "I" "Z"
+## [1] "X" "T" "H"
 ## 
 ## $kinaseC
-## [1] "H" "B" "I" "W" "X" "Z" "C"
+## [1] "S" "P" "Z" "N" "F" "T" "O"
 ```
 
 ```r
@@ -129,13 +129,37 @@ kinases_ksea
 ```
 
 ```
-## kinaseA.J kinaseB.Z kinaseC.R 
-##     0.291     0.424     0.470
+## kinaseA.V kinaseB.H kinaseC.O 
+##     0.178     0.158     0.471
 ```
+
+##### KSEA in parallel #####
+
+Some functions such as `ksea_batchkinases` are optimized to run in parallel in multicore processors. By default they run in 2 cores (if available) but this number can be increased by changing the "mc.cores" variable.
+
+
+```r
+options("mc.cores" = 4)
+```
+
+If you are working with an LSF cluster, you can also take the number of cores allocated in the `bsub` command from the `LSB_MCPU_HOSTS` environment variable.
+
+
+```r
+## Setup multicore forking for mclapply based in bsub available cores
+hosts <- Sys.getenv("LSB_MCPU_HOSTS")
+if(length(hosts) >0){
+ncores <- unlist(strsplit(hosts," "))[2]
+}else{
+ncores <- 1
+}
+options("mc.cores" = ncores)
+```
+
 
 
 ### Developers
 
 The package is documented using [roxygen2](http://cran.r-project.org/web/packages/roxygen2/index.html). After changing the code located in the `R/` folder remember to run 'make' on the main directory to create the documentation following the roxygen2 rules.
 
-To work on the code you will need the `devtools` package installed (read above to installation guide).
+To work on the code you will need the `devtools` package installed (installation guide above).

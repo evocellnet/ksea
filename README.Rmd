@@ -72,9 +72,33 @@ kinases_ksea
 
 ```
 
+##### KSEA in parallel #####
+
+Some functions such as `ksea_batchkinases` are optimized to run in parallel in multicore processors. By default they run in 2 cores (if available) but this number can be increased by changing the "mc.cores" variable.
+
+```{r ksea_mccores, eval=FALSE}
+options("mc.cores" = 4)
+
+```
+
+If you are working with an LSF cluster, you can also take the number of cores allocated in the `bsub` command from the `LSB_MCPU_HOSTS` environment variable.
+
+```{r ksea_lsf, eval=FALSE}
+## Setup multicore forking for mclapply based in bsub available cores
+hosts <- Sys.getenv("LSB_MCPU_HOSTS")
+if(length(hosts) >0){
+ncores <- unlist(strsplit(hosts," "))[2]
+}else{
+ncores <- 1
+}
+options("mc.cores" = ncores)
+
+```
+
+
 
 ### Developers
 
 The package is documented using [roxygen2](http://cran.r-project.org/web/packages/roxygen2/index.html). After changing the code located in the `R/` folder remember to run 'make' on the main directory to create the documentation following the roxygen2 rules.
 
-To work on the code you will need the `devtools` package installed (read above to installation guide).
+To work on the code you will need the `devtools` package installed (installation guide above).
