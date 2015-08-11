@@ -70,26 +70,29 @@ ksea <- function(ranking, norm_express, signature, p=1, display=TRUE,
       c <- "green"
     }
 
+    lyt = matrix(c(1,2),
+                 ncol=1, nrow=2,byrow=TRUE)
+    nf <- layout(mat=lyt, widths=c(1),heights=c(1,5))
+
+    par(mar=c(0,4,1,1)) #margins
+    image(matrix(HITS, ncol=1), axes=FALSE, col=c("white", "red"))
+    box(lty = "solid", col = 'black')
+
+    par(mar=c(4,4,0,1), #margins
+        las=1)
+
     plot(0:N,
          c(0,Phit - Pmiss),
-         col=c,type="l",
+         col=c,
+         type="l",
          xlim=c(0,N),
          ylim=c(-(abs(ES) + 0.5 * (abs(ES))),abs(ES) + 0.5 * (abs(ES))),
          xaxs="i",
-         bty="l",
-         axes=FALSE,
+         ## bty="l",
+         axes=TRUE,
          xlab="Site Rank Position",
          ylab="Running Sum")
-
-    par(new=TRUE)
-    plot(0:N,
-         rep(0,N + 1),
-         col="gray",
-         type="l",
-         new=FALSE,
-         xlab="",
-         ylab="",
-         ylim=c(-(abs(ES) + 0.5 * (abs(ES))),abs(ES) + 0.5 * (abs(ES))))
+    abline(h=0, lty=1, col="darkgrey")
     axis(side=2)
   }
 
