@@ -75,7 +75,9 @@ ksea <- function(ranking, norm_express, signature, p=1, display=TRUE,
     nf <- layout(mat=lyt, widths=c(1),heights=c(1,5))
 
     par(mar=c(0,4,1,1)) #margins
-    image(matrix(HITS, ncol=1), axes=FALSE, col=c("white", "red"))
+    plot(NA, ylim=c(0,1), xlim=c(0,length(HITS)),axes=FALSE,ylab="",xlab="",xaxs="i")
+    abline(v=which(HITS == 1), col="darkgrey")
+    # image(matrix(HITS, ncol=1), axes=FALSE, col=c("#FFFFFFFF", "#B2182B"))
     box(lty = "solid", col = 'black')
 
     par(mar=c(4,4,0,1), #margins

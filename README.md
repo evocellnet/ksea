@@ -50,7 +50,7 @@ regulons
 
 ```
 ## $kinaseA
-## [1] "V" "C" "P" "Q" "R"
+## [1] "D" "Y" "M" "R" "F"
 ```
 
 ```r
@@ -61,16 +61,16 @@ sites
 ```
 
 ```
-##           D           B           E           P           N           I 
-##  2.03762019  1.55461349  1.35110315  1.25799760  1.01558597  0.77266658 
-##           S           V           Y           X           O           Q 
-##  0.77254893  0.64389834  0.49360369  0.41536958 -0.03120861 -0.21144255 
-##           T           Z           G           F           A           H 
-## -0.25373787 -0.31140725 -0.37278886 -0.40731507 -0.64643020 -0.65889236 
-##           C           W           J           K           U           M 
-## -0.67268352 -0.79595344 -0.92648071 -0.95560765 -1.05897401 -1.17062891 
-##           L           R 
-## -1.38702370 -2.23447948
+##           H           W           M           T           B           Q 
+##  1.35493454  1.22982337  1.20976224  1.19283534  1.07068773  1.03135307 
+##           A           R           O           I           Z           V 
+##  0.59213343  0.52228920  0.38475542  0.08131043 -0.03939757 -0.04698889 
+##           J           U           Y           K           S           C 
+## -0.06058610 -0.18578440 -0.24771177 -0.24956496 -0.48579737 -0.62584545 
+##           X           E           L           N           F           P 
+## -0.63211973 -0.67376567 -0.90732279 -1.10864892 -1.24098466 -1.43944726 
+##           G           D 
+## -1.49230285 -1.49906797
 ```
 
 The function `ksea` will run the enrichment analysis for the provided quantifications and known kinase targets.
@@ -88,12 +88,12 @@ ksea_result
 
 ```
 ## $ES
-##         L 
-## -0.445071 
+##          N 
+## -0.4853042 
 ## 
 ## $p.value
-##     L 
-## 0.253
+##     N 
+## 0.249
 ```
 
 The function `ksea_batchKinases` calculates the KSEA p-value for a list of kinases. To improve the performance of the function, it uses as many cores as possible using the `parallell` package.
@@ -107,13 +107,13 @@ regulons
 
 ```
 ## $kinaseA
-## [1] "V" "C" "P" "Q" "R"
+## [1] "D" "Y" "M" "R" "F"
 ## 
 ## $kinaseB
-## [1] "B" "J" "M"
+## [1] "C" "E" "Z"
 ## 
 ## $kinaseC
-## [1] "Y" "L" "R" "Z" "E" "B" "J"
+## [1] "E" "H" "D" "O" "A" "T" "C"
 ```
 
 ```r
@@ -129,8 +129,8 @@ kinases_ksea
 ```
 
 ```
-## kinaseA.L kinaseB.W kinaseC.M 
-##     0.262     0.392     0.223
+## kinaseA.N kinaseB.S kinaseC.T 
+##     0.260     0.186     0.412
 ```
 
 ##### KSEA in parallel #####
