@@ -16,7 +16,7 @@ install.packages('devtools')
 
 ```{r install_ksea_github, eval=FALSE}
 require(devtools)
-install_github("dogcaesar/ksea")
+install_github("evocellnet/ksea")
 
 ```
 
