@@ -1,3 +1,5 @@
+[![Travis-CI Build Status](https://travis-ci.org/evocellnet/ksea.svg?branch=master)](https://travis-ci.org/evocellnet/ksea)
+
 ### Introduction
 
 This package contains an implementation of the Kinase Set Enrichment Analysis (KSEA) used to predict kinase activities based on quantitative phosphoproteomic studies. Using a quantitative phosphoproteomic profile and a list of known targets, the algorithms predicts the activity of the based on the enrichment on top regulated sites within the known targets of the kinase.

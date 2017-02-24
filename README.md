@@ -1,4 +1,3 @@
-
 [![Travis-CI Build Status](https://travis-ci.org/evocellnet/ksea.svg?branch=master)](https://travis-ci.org/evocellnet/ksea)
 
 ### Introduction
@@ -21,7 +20,7 @@ install.packages('devtools')
 
 ```r
 require(devtools)
-install_github("dogcaesar/ksea")
+install_github("evocellnet/ksea")
 ```
 
 #####Local installation
@@ -53,7 +52,7 @@ regulons
 
 ```
 ## $kinaseA
-## [1] "D" "Y" "M" "R" "F"
+## [1] "Y" "C" "I" "S" "B"
 ```
 
 ```r
@@ -64,16 +63,18 @@ sites
 ```
 
 ```
-##           H           W           M           T           B           Q 
-##  1.35493454  1.22982337  1.20976224  1.19283534  1.07068773  1.03135307 
-##           A           R           O           I           Z           V 
-##  0.59213343  0.52228920  0.38475542  0.08131043 -0.03939757 -0.04698889 
-##           J           U           Y           K           S           C 
-## -0.06058610 -0.18578440 -0.24771177 -0.24956496 -0.48579737 -0.62584545 
-##           X           E           L           N           F           P 
-## -0.63211973 -0.67376567 -0.90732279 -1.10864892 -1.24098466 -1.43944726 
-##           G           D 
-## -1.49230285 -1.49906797
+##            E            U            Z            N            S 
+##  1.611089290  1.250664569  1.234637179  1.082452371  1.026981805 
+##            B            Q            J            M            D 
+##  0.575379472  0.532877556  0.474246843  0.421483820  0.358049788 
+##            F            K            Y            G            O 
+##  0.194403791  0.162551646  0.150628008  0.008759558 -0.150678120 
+##            P            C            W            V            T 
+## -0.156401856 -0.237702939 -0.240834542 -0.254118235 -0.317312680 
+##            H            R            A            I            X 
+## -0.337654466 -0.406046178 -0.433621274 -0.585813866 -1.189626572 
+##            L 
+## -1.706905250
 ```
 
 The function `ksea` will run the enrichment analysis for the provided quantifications and known kinase targets.
@@ -83,7 +84,7 @@ The function `ksea` will run the enrichment analysis for the provided quantifica
 ksea_result <- ksea(names(sites), sites, regulons[["kinaseA"]], trial=1000, significance = TRUE)
 ```
 
-![plot of chunk ksea](figure/ksea-1.png) 
+![plot of chunk ksea](figure/ksea-1.png)
 
 ```r
 ksea_result
@@ -91,12 +92,12 @@ ksea_result
 
 ```
 ## $ES
-##          N 
-## -0.4853042 
+##         B 
+## 0.4314363 
 ## 
 ## $p.value
-##     N 
-## 0.249
+##     B 
+## 0.447
 ```
 
 The function `ksea_batchKinases` calculates the KSEA p-value for a list of kinases. To improve the performance of the function, it uses as many cores as possible using the `parallell` package.
@@ -110,13 +111,13 @@ regulons
 
 ```
 ## $kinaseA
-## [1] "D" "Y" "M" "R" "F"
+## [1] "Y" "C" "I" "S" "B"
 ## 
 ## $kinaseB
-## [1] "C" "E" "Z"
+## [1] "J" "N" "E"
 ## 
 ## $kinaseC
-## [1] "E" "H" "D" "O" "A" "T" "C"
+## [1] "W" "E" "C" "Z" "G" "A" "U"
 ```
 
 ```r
@@ -132,8 +133,8 @@ kinases_ksea
 ```
 
 ```
-## kinaseA.N kinaseB.S kinaseC.T 
-##     0.260     0.186     0.412
+## kinaseA.B kinaseB.J kinaseC.Z 
+##     0.439     0.091     0.005
 ```
 
 ##### KSEA in parallel #####

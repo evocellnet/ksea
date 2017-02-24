@@ -1,3 +1,18 @@
+# Required to calculate the p-values in the GSEA.
+# The p-values are calculated by suffling the signatures
+computeSimpleEMPES <- function(ranking,exp_value_profile,signature,trials){
+  ngenes <- length(ranking)
+  siglen <- length(intersect(signature,ranking))
+  ES <- rep(NA,trials)
+  for (i in 1:trials){
+    shuffled_signature <- ranking[sample(1:ngenes,siglen)]
+    tmp <- ksea(ranking,exp_value_profile,shuffled_signature,display=FALSE,significance=FALSE)
+    ES[i] <- tmp
+  }
+  return(ES)
+}
+
+
 ##' Enrichment of differentially regulated sites in a signature of kinase known targets
 ##'
 ##' The Kinase Set Enrichment Analysis is a established analysis statistical method to look
@@ -121,18 +136,4 @@ ksea <- function(ranking, norm_express, signature, p=1, display=TRUE,
       return(ES)
     }
   }
-}
-
-# Required to calculate the p-values in the GSEA.
-# The p-values are calculated by suffling the signatures
-computeSimpleEMPES <- function(ranking,exp_value_profile,signature,trials){
-  ngenes <- length(ranking)
-  siglen <- length(intersect(signature,ranking))
-  ES <- rep(NA,trials)
-  for (i in 1:trials){
-    shuffled_signature <- ranking[sample(1:ngenes,siglen)]
-    tmp <- ksea(ranking,exp_value_profile,shuffled_signature,display=FALSE,significance=FALSE)
-    ES[i] <- tmp
-  }
-  return(ES)
 }

@@ -8,3 +8,4 @@ License: GNU v3
 LazyData: true
 Imports:
     parallel
+RoxygenNote: 6.0.1

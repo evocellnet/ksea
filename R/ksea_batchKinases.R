@@ -6,12 +6,12 @@
 ##' @title Batch KSEA for all kinase regulons
 ##' @param ranking vector with all quantified positions
 ##' @param logvalues vector with all quantifications
-##' @param regulons list containing vectors with substrates of each kinase. Substrates
+##' @param regulons list containing vectors with substrates of each kinase. Substrates 
 ##' should be encoded with the same id as the \code{ranking} vector.
 ##' @param trial Number of permutations used for the empirical p-value generation.
 ##' @return A vector of p-values containing all KSEA p-values for all 
 ##' @author David Ochoa
-##' 
+##' @import parallel
 ksea_batchKinases <- function(ranking, logvalues, regulons, trial=1000){
   require(parallel)
   tests <- mclapply(regulons, function(x)
