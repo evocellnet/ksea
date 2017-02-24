@@ -35,7 +35,7 @@ computeSimpleEMPES <- function(ranking,exp_value_profile,signature,trials){
 ##' @return Enrichment result. The output varies depends on the values of \code{returnRS}
 ##' and \code{significance}. 
 ##' @author David Ochoa (code adapted from Francesco Ioirio's version of the same function).
-##' 
+##' @import graphics
 ksea <- function(ranking, norm_express, signature, p=1, display=TRUE,
                   returnRS=FALSE, significance=FALSE, trial=1000){
 

@@ -13,7 +13,6 @@
 ##' @author David Ochoa
 ##' @import parallel
 ksea_batchKinases <- function(ranking, logvalues, regulons, trial=1000){
-  require(parallel)
   tests <- mclapply(regulons, function(x)
     ksea(ranking, logvalues, x,
           display=FALSE,
