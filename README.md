@@ -6,7 +6,7 @@ This package contains an implementation of the Kinase Set Enrichment Analysis (K
 
 ![kinase](./kinase_GSEA.png)
 
-###Installation
+### Installation
 
 The `ksea` package can be installed directly from github (if public) or locally using the devtools package.
 
