@@ -15,7 +15,7 @@ The `ksea` package can be installed directly from github (if public) or locally 
 install.packages('devtools')
 ```
 
-#####Github installation
+##### Github installation
 
 
 ```r
@@ -23,7 +23,7 @@ require(devtools)
 install_github("evocellnet/ksea")
 ```
 
-#####Local installation
+##### Local installation
 
 You can clone this project and install it locally in your computer.
 
@@ -33,7 +33,7 @@ require(devtools)
 install("./ksea")
 ```
 
-###Usage
+### Usage
 
 First load the `ksea` package.
 
