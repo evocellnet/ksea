@@ -1,5 +1,6 @@
 # Required to calculate the p-values in the GSEA.
 # The p-values are calculated by suffling the signatures
+##' @export
 computeSimpleEMPES <- function(ranking,exp_value_profile,signature,trials){
   ngenes <- length(ranking)
   siglen <- length(intersect(signature,ranking))
@@ -36,6 +37,7 @@ computeSimpleEMPES <- function(ranking,exp_value_profile,signature,trials){
 ##' and \code{significance}. 
 ##' @author David Ochoa (code adapted from Francesco Ioirio's version of the same function).
 ##' @import graphics
+##' @export
 ksea <- function(ranking, norm_express, signature, p=1, display=TRUE,
                   returnRS=FALSE, significance=FALSE, trial=1000){
 

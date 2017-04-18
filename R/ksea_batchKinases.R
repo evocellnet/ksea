@@ -12,6 +12,7 @@
 ##' @return A vector of p-values containing all KSEA p-values for all 
 ##' @author David Ochoa
 ##' @import parallel
+##' @export
 ksea_batchKinases <- function(ranking, logvalues, regulons, trial=1000){
   tests <- mclapply(regulons, function(x)
     ksea(ranking, logvalues, x,
